@@ -99,7 +99,19 @@ namespace OSRSPicker
             // Get OSRS World List from their main page.
             SetStatus("Fetching World List");
             WebClient webClient = new WebClient();
-            string page = webClient.DownloadString("http://oldschool.runescape.com/g=oldscape/slu");
+            string page = "";
+            try 
+            { 
+                page = webClient.DownloadString("http://oldschool.runescape.com/g=oldscape/slu"); 
+            }
+            catch
+            { 
+                SetStatus("Unable to fetch world list.");
+                MessageBox.Show("Error: Unable to fetch world list.\nIs the OSRS website down?\nCheck oldschool.runescape.com");
+                EnableStartButtons();
+                return;
+            }
+            
             HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(page);
 
@@ -175,7 +187,23 @@ namespace OSRSPicker
                     }
                     // Perhaps an even SLOWER scan?
                 }
-            }            
+            }
+        }
+
+        private void EnableStartButtons()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate() { EnableStartButtons(); }));
+            }
+            else
+            {
+                button1.Text = "Scan Worlds";
+                button1.Enabled = true;
+                button3.Text = "Slow Scan";
+                button3.Enabled = true;
+            }
+            
         }
 
         private void RunPing(int current_world_number, int current_players_number, string current_type, string current_location, string current_activity, string domainname)
@@ -196,16 +224,30 @@ namespace OSRSPicker
             // FIND IP
             string ipaddress;
             IPHostEntry hostEntry;
-            hostEntry = Dns.GetHostEntry(domainname);
-            if (hostEntry.AddressList.Length > 0)
+            try
             {
-                var ip = hostEntry.AddressList[0];
-                ipaddress = Convert.ToString(ip);
+                hostEntry = Dns.GetHostEntry(domainname);
+                if (hostEntry.AddressList.Length > 0)
+                {
+                    var ip = hostEntry.AddressList[0];
+                    ipaddress = Convert.ToString(ip);
+                }
+                else
+                {
+                    ipaddress = Convert.ToString("offline");
+                }
             }
-            else
+            catch 
             {
-                ipaddress = Convert.ToString("offline");
+                MessageBox.Show("Error: Internet is down.\nUnable to query DNS.\rOr hostname simply does not exist.");
+                button1.Text = "Scan Worlds";
+                button1.Enabled = true;
+                button3.Text = "Slow Scan";
+                button3.Enabled = true;
+                return;
             }
+
+            
 
             string latency;
             latency = "loading";
