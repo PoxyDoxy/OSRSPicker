@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="HtmlAgilityPack 1.4.9.5" Category="Package" Label="HtmlAgilityPack 1.4.9.5" />
+    <Node Id="OSRSPicker" Category="Project" Label="OSRSPicker" />
+  </Nodes>
+  <Links>
+    <Link Source="OSRSPicker" Target="HtmlAgilityPack 1.4.9.5" Category="Installed Package" />
+  </Links>
+  <Categories>
+    <Category Id="Installed Package" />
+    <Category Id="Package" />
+    <Category Id="Project" />
+  </Categories>
+  <Properties>
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Progression.Layout.GraphDirection" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>
