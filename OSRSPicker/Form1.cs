@@ -144,9 +144,18 @@ namespace OSRSPicker
                     int current_world_number = Convert.ToInt32(current_world);
 
                     // Population
-                    String current_players = rows[i].SelectNodes("td")[1].InnerText;
+                    String current_players = "";
+                    current_players = rows[i].SelectNodes("td")[1].InnerText;
                     current_players = current_players.Replace("players", "");
-                    int current_players_number = Convert.ToInt32(current_players);
+                    int current_players_number;
+                    try
+                    {
+                        current_players_number = Convert.ToInt32(current_players);
+                    }
+                    catch 
+                    {
+                        current_players_number = 0;
+                    }
 
                     // Country
                     String current_location = rows[i].SelectNodes("td")[2].InnerText;
