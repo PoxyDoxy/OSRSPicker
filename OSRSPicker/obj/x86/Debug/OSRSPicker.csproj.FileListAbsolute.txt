@@ -13,3 +13,18 @@ R:\VisualStudio2010 Projects\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.cspr
 R:\VisualStudio2010 Projects\OSRSPicker\OSRSPicker\bin\Debug\System.Threading.dll
 R:\VisualStudio2010 Projects\OSRSPicker\OSRSPicker\bin\Debug\System.Threading.xml
 R:\VisualStudio2010 Projects\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.About.resources
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\OSRSPicker.exe.config
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.exe
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.pdb
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\OSRSPicker.exe
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\OSRSPicker.pdb
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\HtmlAgilityPack.dll
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\System.Threading.dll
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\HtmlAgilityPack.pdb
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\HtmlAgilityPack.xml
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\bin\Debug\System.Threading.xml
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.csprojResolveAssemblyReference.cache
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.About.resources
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.Form1.resources
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.Properties.Resources.resources
+R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Debug\OSRSPicker.csproj.GenerateResource.Cache
