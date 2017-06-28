@@ -9,9 +9,9 @@ Screenshot:
 ---
 
 ### How to Use
-1. Visit [/bin/Release](https://github.com/PoxyDoxy/OSRSPicker/tree/master/OSRSPicker/bin/Release)
-2. Download [OSRSPicker.exe](https://github.com/PoxyDoxy/OSRSPicker/raw/master/OSRSPicker/bin/Release/OSRSPicker.exe) from [OSRSPicker/bin/Release](https://github.com/PoxyDoxy/OSRSPicker/tree/master/OSRSPicker/bin/Release)
-3. Download [HTMLAgilityPack.dll](https://github.com/PoxyDoxy/OSRSPicker/raw/master/OSRSPicker/bin/Release/HtmlAgilityPack.dll) from [OSRSPicker/bin/Release](https://github.com/PoxyDoxy/OSRSPicker/tree/master/OSRSPicker/bin/Release)
+1. Download the latest version from [/releases](https://github.com/PoxyDoxy/OSRSPicker/releases).
+2. Run "OSRSPicker".
+3. Click "Scan", or if you want to take your time, click "Slow Scan". 
 
 The two files must be in the same directory, as OSRSPinger requires HTMLAgilityPack.dll to be able to read the online server list.
 
