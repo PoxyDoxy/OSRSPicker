@@ -13,6 +13,7 @@ using System.Collections;
 using System.Threading;
 using HtmlAgilityPack;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace OSRSPicker
 {
@@ -140,8 +141,17 @@ namespace OSRSPicker
                 {
                     // World
                     String current_world = rows[i].SelectNodes("td")[0].InnerText;
-                    current_world = current_world.Replace("Old School", "");
-                    int current_world_number = Convert.ToInt32(current_world);
+
+                    // Get rid of anything that isn't a number
+                    current_world = Regex.Replace(current_world, "[^0-9]", "");
+
+                    int current_world_number = 0;
+                    try {
+                        current_world_number = Convert.ToInt32(current_world);
+                    } catch {
+                        // Skip the world because it derped
+                        continue;
+                    }
 
                     // Population
                     String current_players = "";

@@ -23,7 +23,7 @@ namespace OSRSPicker
 
         private void About_Load(object sender, EventArgs e)
         {
-
+            label2.Text = "Version " + System.Windows.Forms.Application.ProductVersion;
         }
     }
 }

@@ -28,3 +28,18 @@ R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Release\OSRS
 R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.Form1.resources
 R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.Properties.Resources.resources
 R:\VisualStudio2010 Projects\Git Repo\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.csproj.GenerateResource.Cache
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\OSRSPicker.exe.config
+M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.exe
+M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.pdb
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\OSRSPicker.exe
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\OSRSPicker.pdb
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\HtmlAgilityPack.dll
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\System.Threading.dll
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\HtmlAgilityPack.pdb
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\HtmlAgilityPack.xml
+M:\Gits\OSRSPicker\OSRSPicker\bin\Release\System.Threading.xml
+M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.csprojResolveAssemblyReference.cache
+M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.About.resources
+M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.Form1.resources
+M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.Properties.Resources.resources
+M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.csproj.GenerateResource.Cache
