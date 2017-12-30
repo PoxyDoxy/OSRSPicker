@@ -46,6 +46,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.status_label = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.comboMembers = new System.Windows.Forms.ComboBox();
+            this.comboEvent = new System.Windows.Forms.ComboBox();
+            this.comboLocation = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainlist
@@ -111,7 +118,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(575, 370);
+            this.button1.Location = new System.Drawing.Point(575, 405);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 42);
             this.button1.TabIndex = 1;
@@ -122,7 +129,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(12, 418);
+            this.button2.Location = new System.Drawing.Point(12, 453);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(71, 42);
             this.button2.TabIndex = 2;
@@ -137,7 +144,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(89, 370);
+            this.progressBar1.Location = new System.Drawing.Point(89, 405);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(480, 42);
             this.progressBar1.TabIndex = 5;
@@ -145,7 +152,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(608, 418);
+            this.button3.Location = new System.Drawing.Point(608, 453);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 42);
             this.button3.TabIndex = 11;
@@ -158,7 +165,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pro R", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(89, 419);
+            this.label1.Location = new System.Drawing.Point(89, 454);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 39);
             this.label1.TabIndex = 12;
@@ -169,7 +176,7 @@
             this.status_label.AutoSize = true;
             this.status_label.BackColor = System.Drawing.Color.Transparent;
             this.status_label.Font = new System.Drawing.Font("Kozuka Gothic Pro R", 21.75F);
-            this.status_label.Location = new System.Drawing.Point(185, 419);
+            this.status_label.Location = new System.Drawing.Point(185, 454);
             this.status_label.Name = "status_label";
             this.status_label.Size = new System.Drawing.Size(65, 39);
             this.status_label.TabIndex = 13;
@@ -178,7 +185,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(12, 370);
+            this.button4.Location = new System.Drawing.Point(12, 405);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(71, 42);
             this.button4.TabIndex = 14;
@@ -186,11 +193,104 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // comboMembers
+            // 
+            this.comboMembers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboMembers.FormattingEnabled = true;
+            this.comboMembers.Items.AddRange(new object[] {
+            "Free+Members",
+            "Free",
+            "Members"});
+            this.comboMembers.Location = new System.Drawing.Point(103, 376);
+            this.comboMembers.Name = "comboMembers";
+            this.comboMembers.Size = new System.Drawing.Size(102, 21);
+            this.comboMembers.TabIndex = 0;
+            // 
+            // comboEvent
+            // 
+            this.comboEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboEvent.FormattingEnabled = true;
+            this.comboEvent.Items.AddRange(new object[] {
+            "Event/NoEvent",
+            "Event",
+            "No Event"});
+            this.comboEvent.Location = new System.Drawing.Point(211, 376);
+            this.comboEvent.Name = "comboEvent";
+            this.comboEvent.Size = new System.Drawing.Size(102, 21);
+            this.comboEvent.TabIndex = 0;
+            // 
+            // comboLocation
+            // 
+            this.comboLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboLocation.FormattingEnabled = true;
+            this.comboLocation.Items.AddRange(new object[] {
+            "All Locations",
+            "Australia",
+            "Germany",
+            "UK",
+            "USA"});
+            this.comboLocation.Location = new System.Drawing.Point(319, 376);
+            this.comboLocation.Name = "comboLocation";
+            this.comboLocation.Size = new System.Drawing.Size(102, 21);
+            this.comboLocation.TabIndex = 0;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(459, 378);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(111, 17);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "Maximum Latency";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Enabled = false;
+            this.numericUpDown1.Location = new System.Drawing.Point(576, 377);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(49, 20);
+            this.numericUpDown1.TabIndex = 16;
+            this.numericUpDown1.Tag = "";
+            this.numericUpDown1.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Enabled = false;
+            this.label2.Location = new System.Drawing.Point(631, 379);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "ms";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 466);
+            this.ClientSize = new System.Drawing.Size(745, 502);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.comboLocation);
+            this.Controls.Add(this.comboEvent);
+            this.Controls.Add(this.comboMembers);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.status_label);
             this.Controls.Add(this.label1);
@@ -206,6 +306,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OSRS Picker";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +331,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label status_label;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox comboMembers;
+        private System.Windows.Forms.ComboBox comboEvent;
+        private System.Windows.Forms.ComboBox comboLocation;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

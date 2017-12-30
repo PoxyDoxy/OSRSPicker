@@ -27,6 +27,12 @@ namespace OSRSPicker
             public static int progress_counter = 0;
             public static int trip_count = 0;
             public static int scanspeed;
+            // Storing Form States for nonblocking use during async operation
+            public static string Members;
+            public static string Event;
+            public static string Location;
+            public static bool CheckMaxLatency;
+            public static decimal MaxLatency;
         }
 
         public Form1()
@@ -283,14 +289,31 @@ namespace OSRSPicker
                 latency = Convert.ToString(reply1.RoundtripTime) + "ms";
             }
 
-            // Save to List
-            // World, Latency, Population, Members, Location, Type, Domain, IP
-            string[] row1 = { latency, Convert.ToString(current_players_number), current_type, current_location, current_activity, domainname, ipaddress };
+            bool allG = true;
+
+            // Check Minimum Latency
+            if (latency.Contains("ms")) {                
+                if (Variables.CheckMaxLatency) {
+                    if (Convert.ToDecimal(latency.Replace("ms", "")) > Variables.MaxLatency) {
+                        allG = false;
+                    }
+                }
+            }
+            if (Variables.Members != "Free+Members") { if (Variables.Members != current_type) { allG = false; } } // Check Free/Members
+            if (Variables.Event != "Event/NoEvent") { if (current_activity.Length == 0 & Variables.Event == "Event") { allG = false; } } // Check Event
+            if (Variables.Event != "Event/NoEvent") { if (current_activity.Length != 0 & Variables.Event == "No Event") { allG = false; } } // Check NoEvent
+            if (Variables.Location != "All Locations") { if (Variables.Location != current_location) { allG = false; } } // Check Location
 
             Variables.progress_counter++;
 
-            // Push finished results to the list.
-            AddToList(current_world_number + 300, row1);
+            if (allG) {
+                // Save to List
+                // World, Latency, Population, Members, Location, Type, Domain, IP
+                string[] row1 = { latency, Convert.ToString(current_players_number), current_type, current_location, current_activity, domainname, ipaddress };
+
+                // Push finished results to the list.
+                AddToList(current_world_number + 300, row1);
+            }
 
             // Call the cleanup method to tick over all the meters / bars / values.
             // Because this is all called very fast, I've placed it in a Thread Que.
@@ -410,6 +433,13 @@ namespace OSRSPicker
 
         private void GoTime(int speed)
         {
+            // Store Form State for nonblocking use during async operation
+            Variables.Members = comboMembers.Text;
+            Variables.Event = comboEvent.Text;
+            Variables.Location = comboLocation.Text;
+            Variables.CheckMaxLatency = checkBox1.Checked;
+            Variables.MaxLatency = numericUpDown1.Value;
+
             // It's go time.
             if (this.InvokeRequired)
             {
@@ -456,7 +486,15 @@ namespace OSRSPicker
                 button1.Enabled = false;
                 button3.Enabled = false;
             }
+
+            comboMembers.SelectedIndex = 0;
+            comboEvent.SelectedIndex = 0;
+            comboLocation.SelectedIndex = 0;
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked) { numericUpDown1.Enabled = true; label2.Enabled = true; } else { numericUpDown1.Enabled = false; label2.Enabled = false; }
+        }
     }
 }
