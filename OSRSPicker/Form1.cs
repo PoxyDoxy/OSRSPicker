@@ -223,12 +223,21 @@ namespace OSRSPicker
             }
             else
             {
+                // Enable Buttons
                 button1.Text = "Scan Worlds";
                 button1.Enabled = true;
                 button3.Text = "Slow Scan";
                 button3.Enabled = true;
+
+                // Enable Form Inputs
+                comboMembers.Enabled = true;
+                comboEvent.Enabled = true;
+                comboLocation.Enabled = true;
+                checkBox1.Enabled = true;
+                if (checkBox1.Checked) { numericUpDown1.Enabled = true; label2.Enabled = true; } else { numericUpDown1.Enabled = false; label2.Enabled = false; }
+                
             }
-            
+
         }
 
         private void RunPing(int current_world_number, int current_players_number, string current_type, string current_location, string current_activity, string domainname)
@@ -265,10 +274,7 @@ namespace OSRSPicker
             catch 
             {
                 MessageBox.Show("Error: Internet is down.\nUnable to query DNS.\rOr hostname simply does not exist.");
-                button1.Text = "Scan Worlds";
-                button1.Enabled = true;
-                button3.Text = "Slow Scan";
-                button3.Enabled = true;
+                EnableStartButtons();
                 return;
             }
 
@@ -286,7 +292,7 @@ namespace OSRSPicker
             }
             if (reply1.Status == IPStatus.Success)
             {
-                latency = Convert.ToString(reply1.RoundtripTime) + "ms";
+                latency = Convert.ToString(reply1.RoundtripTime).PadLeft(4, '0') + "ms";
             }
 
             bool allG = true;
@@ -361,6 +367,12 @@ namespace OSRSPicker
                 // All threads are done.
                 if (local_copy_ofvar == Variables.world_amount)
                 {
+                    // Remove the leading zeros after sorting
+                    foreach (ListViewItem item in this.mainlist.Items)
+                    {
+                        item.SubItems[1].Text = item.SubItems[1].Text.TrimStart('0');
+                    }
+
                     // Neaten up the columns so they fit
                     foreach (ColumnHeader ch in this.mainlist.Columns)
                     {
@@ -373,10 +385,7 @@ namespace OSRSPicker
                     this.Text = "OSRS Picker - Finished (" + local_copy_ofvar + "/" + Convert.ToString(Variables.world_amount) + ")";
 
                     // Reset buttons to be clicked again.
-                    button1.Text = "Scan Worlds"; 
-                    button1.Enabled = true;
-                    button3.Text = "Slow Scan";
-                    button3.Enabled = true;
+                    EnableStartButtons();
 
                     // Progress Bar set to be reset.
                     progressBar1.Value = 0;
@@ -433,12 +442,21 @@ namespace OSRSPicker
 
         private void GoTime(int speed)
         {
+            // Disable Form Inputs
+            comboMembers.Enabled = false;
+            comboEvent.Enabled = false;
+            comboLocation.Enabled = false;
+            checkBox1.Enabled = false;
+            numericUpDown1.Enabled = false;
+
             // Store Form State for nonblocking use during async operation
             Variables.Members = comboMembers.Text;
             Variables.Event = comboEvent.Text;
             Variables.Location = comboLocation.Text;
             Variables.CheckMaxLatency = checkBox1.Checked;
             Variables.MaxLatency = numericUpDown1.Value;
+
+
 
             // It's go time.
             if (this.InvokeRequired)
