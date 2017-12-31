@@ -75,7 +75,7 @@
             this.label3.Size = new System.Drawing.Size(307, 148);
             this.label3.TabIndex = 18;
             this.label3.Text = "This tool finds the best OSRS server to play on, by finding out which one respond" +
-                "s the quickest.\r\nResults will vary between Internet Connection / ISP.\r\n";
+    "s the quickest.\r\nResults will vary between Internet Connection / ISP.\r\n";
             // 
             // label4
             // 

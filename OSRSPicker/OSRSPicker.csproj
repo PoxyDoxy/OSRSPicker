@@ -55,7 +55,7 @@
     <StartupObject>OSRSPicker.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>download_icon.ico</ApplicationIcon>
+    <ApplicationIcon>OSRSPicker.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
@@ -129,7 +129,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="download_icon.ico" />
+    <Content Include="OSRSPicker.ico" />
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
