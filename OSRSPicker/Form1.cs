@@ -493,18 +493,6 @@ namespace OSRSPicker
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Warn users that HTMLAgilityPack is required to run the program.
-            // Else, when you press scan, it won't be able to scape the results from the website.
-            // And no results will show up.
-            string NameOfAgilityFile = "HtmlAgilityPack.dll";
-            if (!(File.Exists(NameOfAgilityFile)))
-            {
-                MessageBox.Show("Error: 'HtmlAgilityPack.dll' seems to be missing, please copy it over when moving OSRS Picker.");
-                status_label.Text = "'HtmlAgilityPack.dll' is missing.";
-                button1.Enabled = false;
-                button3.Enabled = false;
-            }
-
             comboMembers.SelectedIndex = 0;
             comboEvent.SelectedIndex = 0;
             comboLocation.SelectedIndex = 0;

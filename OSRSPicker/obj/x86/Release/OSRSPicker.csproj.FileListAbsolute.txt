@@ -33,11 +33,6 @@ M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.exe
 M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.pdb
 M:\Gits\OSRSPicker\OSRSPicker\bin\Release\OSRSPicker.exe
 M:\Gits\OSRSPicker\OSRSPicker\bin\Release\OSRSPicker.pdb
-M:\Gits\OSRSPicker\OSRSPicker\bin\Release\HtmlAgilityPack.dll
-M:\Gits\OSRSPicker\OSRSPicker\bin\Release\System.Threading.dll
-M:\Gits\OSRSPicker\OSRSPicker\bin\Release\HtmlAgilityPack.pdb
-M:\Gits\OSRSPicker\OSRSPicker\bin\Release\HtmlAgilityPack.xml
-M:\Gits\OSRSPicker\OSRSPicker\bin\Release\System.Threading.xml
 M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.csprojResolveAssemblyReference.cache
 M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.About.resources
 M:\Gits\OSRSPicker\OSRSPicker\obj\x86\Release\OSRSPicker.Form1.resources
