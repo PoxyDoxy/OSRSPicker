@@ -189,28 +189,45 @@ namespace OSRSPicker
                     // Domain Name
                     string domainname = "oldschool" + current_world_number + ".runescape.com";
 
-                    // Start Ping using Async threads
-                    var thread = new Thread(
-                    () =>
-                    {
-                        // Push all the details to the main Ping Method.
-                        RunPing(current_world_number, current_players_number, current_type, current_location, current_activity, domainname);
-                    });
-                    // GOTTA GO FAST
-                    thread.Start();
+                    bool allG = true;
 
-                    // Sleep for small amount to prevent CPU spiking and also general fuckery.
-                    if (speed == 0)
+                    if (Variables.Members != "Free+Members") { if (Variables.Members != current_type) { allG = false; } } // Check Free/Members
+                    if (Variables.Event != "Event/NoEvent") { if (current_activity.Length == 0 & Variables.Event == "Event") { allG = false; } } // Check Event
+                    if (Variables.Event != "Event/NoEvent") { if (current_activity.Length != 0 & Variables.Event == "No Event") { allG = false; } } // Check NoEvent
+                    if (Variables.Location != "All Locations") { if (Variables.Location != current_location) { allG = false; } } // Check Location
+
+                    if (allG)
                     {
-                        // Normal Speed -> 75ms wait
-                        Thread.Sleep(75);
+                        // Start Ping using Async threads
+                        var thread = new Thread(
+                        () =>
+                        {
+                            // Push all the details to the main Ping Method.
+                            RunPing(current_world_number, current_players_number, current_type, current_location, current_activity, domainname);
+                        });
+                        // GOTTA GO FAST
+                        thread.Start();
+
+                        // Sleep for small amount to prevent CPU spiking and also general fuckery.
+                        if (speed == 0)
+                        {
+                            // Normal Speed -> 75ms wait
+                            Thread.Sleep(75);
+                        }
+                        else if (speed == 1)
+                        {
+                            // Slow Scan -> 375ms wait
+                            Thread.Sleep(375);
+                        }
+                        // Perhaps an even SLOWER scan?
+                    } else {
+                        Variables.progress_counter++;
+
+                        // Call the cleanup method to tick over all the meters / bars / values.
+                        // Because this is all called very fast, I've placed it in a Thread Que.
+                        // This must be called, even if there are no pings made (because of filtering)
+                        ThreadPool.QueueUserWorkItem(FinishPinger);
                     }
-                    else if (speed == 1)
-                    {
-                        // Slow Scan -> 375ms wait
-                        Thread.Sleep(375);
-                    }
-                    // Perhaps an even SLOWER scan?
                 }
             }
         }
@@ -298,21 +315,22 @@ namespace OSRSPicker
             bool allG = true;
 
             // Check Minimum Latency
-            if (latency.Contains("ms")) {                
-                if (Variables.CheckMaxLatency) {
-                    if (Convert.ToDecimal(latency.Replace("ms", "")) > Variables.MaxLatency) {
+            if (latency.Contains("ms"))
+            {
+                if (Variables.CheckMaxLatency)
+                {
+                    if (Convert.ToDecimal(latency.Replace("ms", "")) > Variables.MaxLatency)
+                    {
                         allG = false;
                     }
                 }
             }
-            if (Variables.Members != "Free+Members") { if (Variables.Members != current_type) { allG = false; } } // Check Free/Members
-            if (Variables.Event != "Event/NoEvent") { if (current_activity.Length == 0 & Variables.Event == "Event") { allG = false; } } // Check Event
-            if (Variables.Event != "Event/NoEvent") { if (current_activity.Length != 0 & Variables.Event == "No Event") { allG = false; } } // Check NoEvent
-            if (Variables.Location != "All Locations") { if (Variables.Location != current_location) { allG = false; } } // Check Location
 
             Variables.progress_counter++;
 
-            if (allG) {
+            if (allG)
+            {
+
                 // Save to List
                 // World, Latency, Population, Members, Location, Type, Domain, IP
                 string[] row1 = { latency, Convert.ToString(current_players_number), current_type, current_location, current_activity, domainname, ipaddress };
@@ -320,6 +338,7 @@ namespace OSRSPicker
                 // Push finished results to the list.
                 AddToList(current_world_number + 300, row1);
             }
+            
 
             // Call the cleanup method to tick over all the meters / bars / values.
             // Because this is all called very fast, I've placed it in a Thread Que.
