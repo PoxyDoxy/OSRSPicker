@@ -11,13 +11,13 @@ Screenshot:
 ### How to Use
 1. Download the latest version from [/releases](https://github.com/PoxyDoxy/OSRSPicker/releases).
 2. Run "OSRSPicker".
-3. Click "Scan", or if you want to take your time, click "Slow Scan". 
+3. Click "Scan Worlds", or click "Slow Scan" if you want to take your time. 
 
 ---
 ### Backstory
-At the time of writing this, the Australian OldSchool RuneScape Servers had not been released, and so the game had always felt a bit on the laggy side, but over the many years of playing the same, It has become a natural feeling. 
+At the time of writing this, the Australian OldSchool RuneScape Servers had not been released, and so the game had always felt a bit on the laggy side, but over the many years of playing the game, It has become a natural feeling. 
 
-Despite game play seeming smooth, when it came to PVP, It just didn't feel quite the same as there was noticable delay.
+Despite gameplay seeming smooth, when it came to PVP, It just didn't feel quite the same as there was noticable delay.
 
 And so, I spent the night programming this tool, to find out which world/server would feel the best to play on.
 
@@ -25,9 +25,10 @@ And so, I spent the night programming this tool, to find out which world/server 
 #### What it does do:
 
   1. Grabs the latest list of OSRS Servers dynamically (http://oldschool.runescape.com/g=oldscape/slu).
-  2. Pings each server with a single 32 byte ICMP packet to find its latency from your internet connection.
-  3. Saves the results to a list.
-  4. Sorts the list by latency, from smallest to largest (Ascending).
+  2. Opens a single TCP socket to each server, and measures the amount of time it takes. 
+  3. If the TCP method fails, it pings each server with a single 32 byte ICMP packet to find its latency from your internet connection.
+  4. Saves the results to a list.
+  5. Sorts the list by latency, from smallest to largest (Ascending).
 
 #### What it does NOT do:
   - Make you good at runescape.
