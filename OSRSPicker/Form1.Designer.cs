@@ -265,7 +265,7 @@
             this.numericUpDown1.Tag = "";
             this.numericUpDown1.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.numericUpDown1.Value = new decimal(new int[] {
-            300,
+            200,
             0,
             0,
             0});

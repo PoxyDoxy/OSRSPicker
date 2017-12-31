@@ -259,20 +259,7 @@ namespace OSRSPicker
 
         private void RunPing(int current_world_number, int current_players_number, string current_type, string current_location, string current_activity, string domainname)
         {
-            // Run Ping
-            Ping pingSender = new Ping();
-            PingOptions options = new PingOptions();
-
-            // Use the default Ttl value which is 128, 
-            // but change the fragmentation behavior.
-            options.DontFragment = true;
-
-            // Create a buffer of 32 bytes of data to be transmitted. 
-            string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
-            int timeout = 3000;
-
-            // FIND IP
+            // Find IP First
             string ipaddress;
             IPHostEntry hostEntry;
             try
@@ -295,21 +282,74 @@ namespace OSRSPicker
                 return;
             }
 
-            
-
             string latency;
             latency = "loading";
 
-            // Send ICMP Packet
-            PingReply reply1 = pingSender.Send(ipaddress, timeout, buffer, options);
+            // Measure Latency
+            try
+            {
+                // Try the new TCP connect method
+                using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+                {
+                    try
+                    {
+                        // Start Timing
+                        var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            if (reply1.Status == IPStatus.TimedOut)
-            {
-                latency = "offline";
+                        // Open Connection
+                        socket.Connect(ipaddress, 43594);
+
+                        // Stop Timing
+                        watch.Stop();
+
+                        // Calculate Time Difference
+                        var elapsedMs = watch.ElapsedMilliseconds;
+
+                        latency = Convert.ToString(elapsedMs).PadLeft(4, '0') + "ms";
+                    }
+                    catch (SocketException ex)
+                    {
+                        if (ex.SocketErrorCode == SocketError.ConnectionRefused)
+                        {
+                            // Port is closed
+                            latency = "offline";
+                        }
+                    }
+                }
             }
-            if (reply1.Status == IPStatus.Success)
-            {
-                latency = Convert.ToString(reply1.RoundtripTime).PadLeft(4, '0') + "ms";
+            catch {
+                // Fail Over to the old ICMP method
+                try
+                {
+                    // Run Ping
+                    Ping pingSender = new Ping();
+                    PingOptions options = new PingOptions();
+
+                    // Use the default Ttl value which is 128, 
+                    // but change the fragmentation behavior.
+                    options.DontFragment = true;
+
+                    // Create a buffer of 32 bytes of data to be transmitted. 
+                    string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+                    byte[] buffer = Encoding.ASCII.GetBytes(data);
+                    int timeout = 3000;
+
+                    // Old ICMP Ping Method
+                    // Send ICMP Packet
+                    PingReply reply1 = pingSender.Send(ipaddress, timeout, buffer, options);
+
+                    if (reply1.Status == IPStatus.TimedOut)
+                    {
+                        latency = "offline";
+                    }
+                    if (reply1.Status == IPStatus.Success)
+                    {
+                        latency = Convert.ToString(reply1.RoundtripTime).PadLeft(4, '0') + "ms";
+                    }
+                }
+                catch {
+                    latency = "offline";
+                }
             }
 
             bool allG = true;
@@ -330,7 +370,6 @@ namespace OSRSPicker
 
             if (allG)
             {
-
                 // Save to List
                 // World, Latency, Population, Members, Location, Type, Domain, IP
                 string[] row1 = { latency, Convert.ToString(current_players_number), current_type, current_location, current_activity, domainname, ipaddress };
