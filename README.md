@@ -13,8 +13,6 @@ Screenshot:
 2. Run "OSRSPicker".
 3. Click "Scan", or if you want to take your time, click "Slow Scan". 
 
-The two files must be in the same directory, as OSRSPinger requires HTMLAgilityPack.dll to be able to read the online server list.
-
 ---
 ### Backstory
 At the time of writing this, the Australian OldSchool RuneScape Servers had not been released, and so the game had always felt a bit on the laggy side, but over the many years of playing the same, It has become a natural feeling. 
@@ -40,12 +38,12 @@ And so, I spent the night programming this tool, to find out which world/server 
 ### Requirements
 
  - NET 4.0
- - This uses HTMLAgilityPack
  
 ### About the code
  - Written in C#
- - Built in Visual Studio 2010 (Gosh, I'm such a noob)
  - Written within the timespan of about 1.5 days
+ - Makes use of Costura.Fody to merge the HTMLAgilityPack with the main exe. 
+ - Originally written in VS2010, later updated with VS2015
 
 --- 
 
