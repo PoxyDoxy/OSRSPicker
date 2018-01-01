@@ -52,6 +52,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.comboSort = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -201,7 +202,7 @@
             "Free+Members",
             "Free",
             "Members"});
-            this.comboMembers.Location = new System.Drawing.Point(103, 376);
+            this.comboMembers.Location = new System.Drawing.Point(22, 376);
             this.comboMembers.Name = "comboMembers";
             this.comboMembers.Size = new System.Drawing.Size(102, 21);
             this.comboMembers.TabIndex = 0;
@@ -214,7 +215,7 @@
             "Event/NoEvent",
             "Event",
             "No Event"});
-            this.comboEvent.Location = new System.Drawing.Point(211, 376);
+            this.comboEvent.Location = new System.Drawing.Point(130, 376);
             this.comboEvent.Name = "comboEvent";
             this.comboEvent.Size = new System.Drawing.Size(102, 21);
             this.comboEvent.TabIndex = 0;
@@ -229,7 +230,7 @@
             "Germany",
             "UK",
             "USA"});
-            this.comboLocation.Location = new System.Drawing.Point(319, 376);
+            this.comboLocation.Location = new System.Drawing.Point(238, 376);
             this.comboLocation.Name = "comboLocation";
             this.comboLocation.Size = new System.Drawing.Size(102, 21);
             this.comboLocation.TabIndex = 0;
@@ -237,7 +238,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(459, 378);
+            this.checkBox1.Location = new System.Drawing.Point(351, 378);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 17);
             this.checkBox1.TabIndex = 15;
@@ -248,7 +249,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Enabled = false;
-            this.numericUpDown1.Location = new System.Drawing.Point(576, 377);
+            this.numericUpDown1.Location = new System.Drawing.Point(468, 377);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             300,
             0,
@@ -274,11 +275,29 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Enabled = false;
-            this.label2.Location = new System.Drawing.Point(631, 379);
+            this.label2.Location = new System.Drawing.Point(523, 379);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 17;
             this.label2.Text = "ms";
+            // 
+            // comboSort
+            // 
+            this.comboSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSort.FormattingEnabled = true;
+            this.comboSort.Items.AddRange(new object[] {
+            "Sort by World",
+            "Sort by Latency",
+            "Sort by Population",
+            "Sort by Free/Members",
+            "Sort by Location",
+            "Sort by Type",
+            "Sort by Domain",
+            "Sort by IP"});
+            this.comboSort.Location = new System.Drawing.Point(575, 376);
+            this.comboSort.Name = "comboSort";
+            this.comboSort.Size = new System.Drawing.Size(158, 21);
+            this.comboSort.TabIndex = 0;
             // 
             // Form1
             // 
@@ -290,6 +309,7 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.comboLocation);
             this.Controls.Add(this.comboEvent);
+            this.Controls.Add(this.comboSort);
             this.Controls.Add(this.comboMembers);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.status_label);
@@ -337,6 +357,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboSort;
     }
 }
 

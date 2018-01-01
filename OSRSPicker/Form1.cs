@@ -31,6 +31,7 @@ namespace OSRSPicker
             public static string Members;
             public static string Event;
             public static string Location;
+            public static string Sort;
             public static bool CheckMaxLatency;
             public static decimal MaxLatency;
         }
@@ -54,33 +55,78 @@ namespace OSRSPicker
 
             }
 
-            // Compare the two rows.
+            
             public int Compare(object x, object y)
             {
-                /* 
-                   We need to access the same item multiple times, so
-                   save a local reference to reduce typecasting over and
-                   over again
-                */
+                // Compare the two rows.
                 ListViewItem FirstItem = (ListViewItem)x;
                 ListViewItem SecondItem = (ListViewItem)y;
 
-                /* 
-                 *  Compare the two columns of each item, combined to make 
-                 *  a single item for comparing.
-                 *  SubItems[0] is the first column.
-                 *  SubItems[1] is the second column, and so on.
-                */
+                // Sorting by Selected Method (comboSort.text stored in Variables.Sort)
                 int resultthing;
 
-                // Sort by First Column (Always Works)
-                resultthing = String.Compare(FirstItem.SubItems[0].Text, SecondItem.SubItems[0].Text);
+                // Sort by World
+                if (Variables.Sort == "Sort by World") {
+                    try { return Convert.ToInt32(FirstItem.SubItems[0].Text).CompareTo(Convert.ToInt32(SecondItem.SubItems[0].Text)); } catch { return 0; }
+                }
 
-                // Try Sorting by Second Column (Latency), does not always work.
-                try { resultthing = String.Compare(FirstItem.SubItems[1].Text, SecondItem.SubItems[1].Text); }
-                catch {};
-                
-                return resultthing;
+                // Sort by Latency
+                if (Variables.Sort == "Sort by Latency") { 
+                    try {
+                        if (FirstItem.SubItems[1].Text == "offline" & SecondItem.SubItems[1].Text == "offline") { return 0; }
+                        if (FirstItem.SubItems[1].Text == "offline") { return 1; }
+                        if (SecondItem.SubItems[1].Text == "offline") { return -1; }
+
+                        int tempvar1 = Convert.ToInt32(FirstItem.SubItems[1].Text.Replace("ms", ""));
+                        int tempvar2 = Convert.ToInt32(SecondItem.SubItems[1].Text.Replace("ms", ""));
+                        resultthing = tempvar1.CompareTo(tempvar2);
+                        return resultthing;
+                    } catch {
+                        return 0;
+                    }
+                }
+
+                // Sort by Population
+                if (Variables.Sort == "Sort by Population")
+                {
+                    try { return Convert.ToInt32(FirstItem.SubItems[2].Text).CompareTo(Convert.ToInt32(SecondItem.SubItems[2].Text)); } catch { return 0; }
+                }
+
+                // Sort by Free/Members
+                if (Variables.Sort == "Sort by Free/Members")
+                {
+                    try { return String.Compare(FirstItem.SubItems[3].Text, SecondItem.SubItems[3].Text); } catch { return 0; }
+                }
+
+                // Sort by Location
+                if (Variables.Sort == "Sort by Location")
+                {
+                    try { return String.Compare(FirstItem.SubItems[4].Text, SecondItem.SubItems[4].Text); } catch { return 0; }
+                }
+
+                // Sort by Type
+                if (Variables.Sort == "Sort by Type")
+                {
+                    try { return String.Compare(FirstItem.SubItems[5].Text, SecondItem.SubItems[5].Text); } catch { return 0; }
+                }
+
+                // Sort by Domain
+                if (Variables.Sort == "Sort by Domain")
+                {
+                    try { return Convert.ToInt32(Regex.Replace(FirstItem.SubItems[6].Text, "[^0-9]", "")).CompareTo(Convert.ToInt32(Regex.Replace(SecondItem.SubItems[6].Text, "[^0-9]", ""))); } catch { return 0; }
+                }
+
+                // Sort by IP
+                if (Variables.Sort == "Sort by IP")
+                {
+                    try {
+                        string[] ip1 = FirstItem.SubItems[7].Text.Split('.');
+                        string[] ip2 = SecondItem.SubItems[7].Text.Split('.');
+                        long resultip1 = (Convert.ToInt64(ip1[0]) * 255 * 255 * 255) + (Convert.ToInt64(ip1[1]) * 255 * 255 ) + (Convert.ToInt64(ip1[2]) * 255) + (Convert.ToInt64(ip1[3]));
+                        long resultip2 = (Convert.ToInt64(ip2[0]) * 255 * 255 * 255) + (Convert.ToInt64(ip2[1]) * 255 * 255) + (Convert.ToInt64(ip2[2]) * 255) + (Convert.ToInt64(ip2[3]));
+                        return Convert.ToInt64(resultip1).CompareTo(Convert.ToInt64(resultip2)); } catch { return 0; }
+                }
+                return 0;
             }
         }
 
@@ -250,6 +296,7 @@ namespace OSRSPicker
                 comboMembers.Enabled = true;
                 comboEvent.Enabled = true;
                 comboLocation.Enabled = true;
+                comboSort.Enabled = true;
                 checkBox1.Enabled = true;
                 if (checkBox1.Checked) { numericUpDown1.Enabled = true; label2.Enabled = true; } else { numericUpDown1.Enabled = false; label2.Enabled = false; }
                 
@@ -305,7 +352,7 @@ namespace OSRSPicker
                         // Calculate Time Difference
                         var elapsedMs = watch.ElapsedMilliseconds;
 
-                        latency = Convert.ToString(elapsedMs).PadLeft(4, '0') + "ms";
+                        latency = Convert.ToString(elapsedMs) + "ms";
                     }
                     catch (SocketException ex)
                     {
@@ -344,7 +391,7 @@ namespace OSRSPicker
                     }
                     if (reply1.Status == IPStatus.Success)
                     {
-                        latency = Convert.ToString(reply1.RoundtripTime).PadLeft(4, '0') + "ms";
+                        latency = Convert.ToString(reply1.RoundtripTime) + "ms";
                     }
                 }
                 catch {
@@ -425,12 +472,6 @@ namespace OSRSPicker
                 // All threads are done.
                 if (local_copy_ofvar == Variables.world_amount)
                 {
-                    // Remove the leading zeros after sorting
-                    foreach (ListViewItem item in this.mainlist.Items)
-                    {
-                        item.SubItems[1].Text = item.SubItems[1].Text.TrimStart('0');
-                    }
-
                     // Neaten up the columns so they fit
                     foreach (ColumnHeader ch in this.mainlist.Columns)
                     {
@@ -504,6 +545,7 @@ namespace OSRSPicker
             comboMembers.Enabled = false;
             comboEvent.Enabled = false;
             comboLocation.Enabled = false;
+            comboSort.Enabled = false;
             checkBox1.Enabled = false;
             numericUpDown1.Enabled = false;
 
@@ -511,6 +553,7 @@ namespace OSRSPicker
             Variables.Members = comboMembers.Text;
             Variables.Event = comboEvent.Text;
             Variables.Location = comboLocation.Text;
+            Variables.Sort = comboSort.Text;
             Variables.CheckMaxLatency = checkBox1.Checked;
             Variables.MaxLatency = numericUpDown1.Value;
 
@@ -554,6 +597,7 @@ namespace OSRSPicker
             comboMembers.SelectedIndex = 0;
             comboEvent.SelectedIndex = 0;
             comboLocation.SelectedIndex = 0;
+            comboSort.SelectedIndex = 1;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
